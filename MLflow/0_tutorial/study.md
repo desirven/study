@@ -2,6 +2,9 @@
 https://pseudolab.github.io/mlflow_%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/  
 https://github.com/vhrehfdl/mlflow_tutorial
 
+https://sonseungha.tistory.com/680  
+https://dailyheumsi.tistory.com/260
+
 ## library version issues  
 * numpy==1.23.4
 * protobuf==3.20.0
