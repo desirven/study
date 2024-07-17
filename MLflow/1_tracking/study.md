@@ -29,4 +29,6 @@ curl 'http://localhost:5000/api/2.0/mlflow/metrics/get-history?run_id={run_id}&m
 > 다음에 확인할 것
 > 1. experiment list, run list, 현재 실행중인 run_id list를 가져오는 법이 있는가?
 > 2. metric_key는 코드 상에서 어떻게 등록하는지, 마찬가지로 list 조회가능한지?
-> 3. 
+> 3. cli에서는 잘되는데 python 코드안에서 잘 되는지 확인
+
+
