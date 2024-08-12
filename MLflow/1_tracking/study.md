@@ -2,7 +2,7 @@
 MLflow tracking을 하는 중에 ui가 아닌 REST API로 tracking 중인 값들 가져오기
 
 ## References
-code base : https://github.com/vhrehfdl/mlflow_tutorial/DL
+code base : https://github.com/vhrehfdl/mlflow_tutorial/DL       
 official documentation : https://www.mlflow.org/docs/2.14.0/rest-api.html#get-run
 
 ## Study
