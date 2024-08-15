@@ -5,7 +5,7 @@ MLflow tracking과 inference를 MNIST classification 코드에 적용해보기
 <img alt="img.png" src="img.png" width="30%"/>  
 
 ### Description
-* 기본적인 정보 (시작시간, 종료시간)와 같은 것들이 저장된다. web ui에서 수정가능
+* web ui에서 수동으로 적어주는 것으로 보임
 
 ### Parameters
 * 말그대로 파라미터를 저장, 파라미터대비 최종metric을 시각화하여 보여주는 기능이 있다.
@@ -74,8 +74,6 @@ with mlflow.start_run():
 ----------------------------------------------------------------
 
 > TODO
-> * 여러번 돌려보고 web ui 확인
-> * Description 이 어떻게 동작하는지 확인
 > * Artifact 저장시 MinIO 사용해야하니 공부
 > * mlflow.projects.run() 확인
 > * mlflow.log_model() 확인
