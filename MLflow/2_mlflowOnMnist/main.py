@@ -5,7 +5,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transfroms
 
-hyperparams = {"learning_rate": 0.001, "batch_size": 100, "epochs": 3, "num_channels": 2, "seed":1}
+hyperparams = {"learning_rate": 0.0001, "batch_size": 100, "epochs": 5, "num_channels": 2, "seed":1}
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 torch.manual_seed(hyperparams["seed"])
 if device == 'cuda':
@@ -53,7 +53,7 @@ class ConvNet(nn.Module):
         return F.log_softmax(x)
 
 
-while True:
+for _ in range(10):
     hyperparams["num_channels"] += 1
     model = ConvNet(num_channels=hyperparams["num_channels"]).to(device)
     criterion = nn.CrossEntropyLoss().to(device)
@@ -84,21 +84,24 @@ while True:
                 avg_cost += cost / len(train_loader)
             print('[Epoch: {:>4}] cost = {:>.9}'.format(epoch + 1, avg_cost))
         # 메트릭 저장
-            mlflow.log_metric('cost', float(avg_cost))
+            mlflow.log_metric('epoch', epoch)
+            mlflow.log_metric('cost', -float(avg_cost))
 
         # test
-        model.eval()
-        with torch.no_grad():
-            correct = 0
-            total = 0
+            model.eval()
+            with torch.no_grad():
+                correct = 0
+                total = 0
 
-            for data, target in test_loader:
-                data = data.to(device)
-                target = target.to(device)
-                out = model(data)
-                preds = torch.max(out.data, 1)[1]
-                total += len(target)
-                correct += (preds == target).sum().item()
+                for data, target in test_loader:
+                    data = data.to(device)
+                    target = target.to(device)
+                    out = model(data)
+                    preds = torch.max(out.data, 1)[1]
+                    total += len(target)
+                    correct += (preds == target).sum().item()
+                print('Val Accuracy: ', 100. * correct / total, '%')
+                mlflow.log_metric('val_acc', float(correct / total))
 
-            print('Test Accuracy: ', 100. * correct / total, '%')
-            mlflow.log_metric('test_acc', float(correct / total))
+        print('Test Accuracy: ', 100. * correct / total, '%')
+        mlflow.log_metric('test_acc', float(correct / total))
