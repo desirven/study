@@ -2,7 +2,7 @@ code base: https://yong0810.tistory.com/17
 MLflow tracking과 inference를 MNIST classification 코드에 적용해보기
 ----------------------------------------------------------------
 ## MLflow Tracking
-<img alt="img.png" src="img.png" width="30%"/>  
+<img alt="img.png" src="src/img.png" width="30%"/>  
 
 ### Description
 * web ui에서 수동으로 적어주는 것으로 보임
@@ -63,18 +63,7 @@ with mlflow.start_run():
 ```
 
 ----------------------------------------------------------------
-## 그외
 ### autologging
 * Tensorboard, scikit-learn 같은 라이브러리로 학습할때 코드에 일일히 명시하지 않아도 metrics와 params를 자동으로 저장함
 * pytorch의 경우 lightning을 사용하면 사용가능한 것으로 보임
 * https://mlflow.org/docs/latest/tracking/autolog.html#pytorch
-
-
-
-----------------------------------------------------------------
-
-> TODO
-> * Artifact 저장시 MinIO 사용해야하니 공부
-> * mlflow.projects.run() 확인
-> * mlflow.log_model() 확인
-> * mlflow.register_model() 확인
