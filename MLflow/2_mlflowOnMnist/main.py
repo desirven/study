@@ -59,9 +59,9 @@ optimizer = torch.optim.Adam(model.parameters(), lr=hyperparams["learning_rate"]
 import mlflow
 
     # cli에서 'mlflow server ~~'로 열어둔 서버에 연결
-    # 코드내에서 비동기로 열경우 웹ui로 접근이 안되는 문제가 있어서 일단 이렇게 실험
 mlflow.set_tracking_uri("http://127.0.0.1:5001")
-    # 없으면 자동으로 experiment 생성해줌
+    # create를 안해도 set에서 자동으로 생성해주지만 artifact_location을 지정하려면 사용해야한다.
+# mlflow.create_experiment(experiment_name, artifact_location="s3://your-bucket")
 mlflow.set_experiment("MNIST")
 
 with mlflow.start_run() as run:

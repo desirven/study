@@ -1,6 +1,25 @@
 code base: https://yong0810.tistory.com/17  
 MLflow tracking과 inference를 MNIST classification 코드에 적용해보기
-----------------------------------------------------------------
+-------------------------------------------------------
+## mlflow server
+```
+mlflow server --host 127.0.0.1 --port 5001
+    
+# 백엔드 DB 연결할 때 사용 (model registry에서 사용됨)
+mlflow server --backend-store-uri sqlite:///mydb.sqlite
+```
+```python
+# Python 코드에서 띄워둔 tracking server 연결
+mlflow.set_tracking_uri("http://127.0.0.1:5001")
+    
+# experiment 연결
+# create는 생략 가능 (local 에 저장됨)
+experiment_name = "MNIST"
+mlflow.create_experiment(experiment_name, artifact_location="s3://your-bucket")
+mlflow.set_experiment(experiment_name)
+```
+-------------------------------------------------------
+
 ## MLflow Tracking
 <img alt="img.png" src="src/img.png" width="30%"/>  
 

@@ -1,5 +1,7 @@
+Reference:  
 https://dailyheumsi.tistory.com/262
-## mlflow models
+
+## MLflow models
 프레임워크 별로 함수 제공한다.  
 https://mlflow.org/docs/latest/python_api/mlflow.pytorch.html?highlight=log_model#mlflow.pytorch
 
@@ -33,8 +35,10 @@ output_data_np = model(input_data).detach().numpy()
 signature = infer_signature(input_data_np, output_data_np)
 mlflow.pytorch.log_model(model, "model", signature=signature)
 ```
-이렇게 처리해줬더니 load해서 inference할 때 Tensor로 넣어도 알아서 동작한다.
+<img alt="img.png" src="src/img3.png" width="80%"/>
 
+MLmodel 파일을 보면 내부적으로 알아서 Tensor로 잡아주는 것을 확인할 수 있다.  
+(inference할 때에도 Tensor로 입력해도 의도한 대로 동작한다.)
 
 --------------------------------
 ### load_model
@@ -50,3 +54,13 @@ y_pred = loaded_model(x)
 ``` 
 위 예시는 학습한 모델 저장 후 바로 불러오는 것이지만 추론만 따로 하려는 경우 run_id만 알고 있으면 가능하다.
 
+--------------------------------
+## MLflow model registry
+https://dailyheumsi.tistory.com/261  
+* web ui 에서 마음에 드는 모델 선택하여 DB에 등록
+  * mlflow server 열 때 backend-store-uri 인자로 준 DB를 사용
+    * postgresql, mysql, sqlite, mssql
+* 등록된 모델의 버전관리
+* 등록된 모델 서빙
+
+> TODO: 테스트 해보기
