@@ -3,10 +3,10 @@ MLflow tracking과 inference를 MNIST classification 코드에 적용해보기
 -------------------------------------------------------
 ## mlflow server
 ```
-mlflow server --host 127.0.0.1 --port 5001
+$ mlflow server --host 127.0.0.1 --port 5001
     
 # 백엔드 DB 연결할 때 사용 (model registry에서 사용됨)
-mlflow server --backend-store-uri sqlite:///mydb.sqlite
+$ mlflow server --backend-store-uri sqlite:///mydb.sqlite
 ```
 ```python
 # Python 코드에서 띄워둔 tracking server 연결
