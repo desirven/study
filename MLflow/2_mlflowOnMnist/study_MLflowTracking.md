@@ -49,8 +49,8 @@ with mlflow.start_run():
         # loss.backward()
         accuracy = ...
         localization_loss, classification_loss = ...
-        mlflow.log_metric("epoch_accuracy", accuracy)
-        mlflow.log_metrics({"loc_loss": localization_loss, "cls_loss": classification_loss})
+        mlflow.log_metric("epoch_accuracy", accuracy, step=epoch+1)
+        mlflow.log_metrics({"loc_loss": localization_loss, "cls_loss": classification_loss}, step=epoch+1)
 ```
 
 ### Tags

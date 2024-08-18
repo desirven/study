@@ -5,7 +5,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transfroms
 
-hyperparams = {"learning_rate": 0.0001, "batch_size": 100, "epochs": 5, "num_channels": 2, "seed":1}
+hyperparams = {"learning_rate": 0.0001, "batch_size": 100, "epochs": 5, "num_channels": 10, "seed":1}
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 torch.manual_seed(hyperparams["seed"])
 if device == 'cuda':
@@ -96,8 +96,7 @@ with mlflow.start_run() as run:
             avg_cost += cost / len(train_loader)
         print('[Epoch: {:>4}] cost = {:>.9}'.format(epoch + 1, avg_cost))
     # 메트릭 저장
-        mlflow.log_metric('epoch', epoch)
-        mlflow.log_metric('cost', -float(avg_cost))
+        mlflow.log_metric('cost', -float(avg_cost), step=epoch+1)
 
     # test
         model.eval()
@@ -113,7 +112,7 @@ with mlflow.start_run() as run:
                 total += len(target)
                 correct += (preds == target).sum().item()
             print('Val Accuracy: ', 100. * correct / total, '%')
-            mlflow.log_metric('val_acc', float(correct / total))
+            mlflow.log_metric('val_acc', float(correct / total), step=epoch+1)
 
 # MLFlow models
     from mlflow.models.signature import infer_signature
