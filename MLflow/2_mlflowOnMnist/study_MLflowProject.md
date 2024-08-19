@@ -4,7 +4,6 @@ https://pupbani.tistory.com/233
 
 ## MLflow Projects
 mmdet에서 config로 하이퍼 파라미터 관리하는 것과 유사하다.  
-프로젝트를 버전별로 패키징해서 정리해주는 것은 아닌 것 같다. 
 
 ```yaml
 name: tutorial
